@@ -21,6 +21,7 @@ RootDocument (main)
 
 
 class SubDocument(models.Model):
+    name = models.CharField(max_length=100, blank=False, null=False)
     root_document = models.ForeignKey('RootDocument', on_delete=models.CASCADE)
     branch_owner = models.ForeignKey(User, on_delete=models.CASCADE)  # User from either user or shared_users
     document = models.JSONField()
