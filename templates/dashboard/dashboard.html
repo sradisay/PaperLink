@@ -1,8 +1,48 @@
 {% extends "base/base.html" %}
 {% load static %}
-{% block content %}
 
-    {% for document in documents %}
-        {{ document.name }}
-    {% endfor %}
+
+{#{% for document in documents %}#}
+{#    {{ document.name }}#}
+{#{% endfor %}#}
+
+
+
+{% block content %}
+    <link href="{% static "css/dashboard/dashboard.css" %}">
+
+    <div id="dashboard" class="p-2 overflow-hidden" >
+        <div class="row" style="height: 38px;">
+            <div class="col-3 py-1 bg-light">
+                <h5 class="my-auto">Paperlink</h5>
+            </div>
+            <div class="col-9 ">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-md-6 col-10" id="searchbar">
+                        <input placeholder="Search" type="text" class="form-control rounded-pill"/>
+                    </div>
+                    <div class="col-1">
+                        <button class="btn btn-outline-secondary" id="profile">
+                            <i class="bi bi-person"></i>
+                        </button>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row" style="height:calc(100vh - 75px);">
+            <div class="col-3 bg-light">
+
+            </div>
+            <div class="col-9">
+
+            </div>
+        </div>
+
+
+    </div>
+
 {% endblock %}
