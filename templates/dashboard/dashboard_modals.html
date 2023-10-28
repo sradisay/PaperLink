@@ -1,0 +1,35 @@
+{% load static %}
+<script src="{% static "js/dashboard/dashboard_modals.js" %}"></script>
+
+<div class="modal fade" id="rename-modal" tabindex="-1" role="dialog" aria-labelledby="rename-modal-label" aria-hidden="true" >
+  <div class="modal-dialog " role="document" >
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rename-modal-label">Rename Document</h5>
+        <button type="button" class="close bg-transparent border-0 " data-dismiss="modal" aria-label="Close" id="rename-modal-close">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input class="form-control bg-dark border-white text-white" id="new-name" type="text" placeholder="Writing 101 Essay #3"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="rename-modal-cancel">Cancel</button>
+        <button type="button" class="btn btn-success" id="rename-modal-rename">Rename</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="document-context-menu" class="position-fixed rounded bg-light p-0 " style="display: none;z-index: 10;">
+    <div class="d-flex flex-column p-0">
+        <button class="btn btn-light" id="renameDocument">
+            <i class="bi bi-pen"></i>
+            <span class="px-2">Rename</span>
+        </button>
+        <button class="btn btn-light text-danger" id="deleteDocument">
+            <i class="bi bi-trash"></i>
+            <span class="px-2">Delete</span>
+        </button>
+    </div>
+</div>

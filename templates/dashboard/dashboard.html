@@ -11,6 +11,9 @@
 {% block content %}
     <input type="hidden" value="{{ request.user.username }}" id="username">
     <link rel="stylesheet" href="{% static "css/dashboard/dashboard.css" %}"/>
+
+    {% include "dashboard/dashboard_modals.html" %}
+
     <script src="{% static "js/dashboard/dashboard.js" %}"></script>
     <div id="dashboard" class="overflow-hidden" >
         <div class=""  id="dashboard-main">
