@@ -8,5 +8,6 @@ ws_urlpatterns = [
 
 urlpatterns = [
     path('create_document', views.create_doc, name='create_doc'),
-    path('get_child_docs', views.get_doc_tree, name='get_children')
+    path('get_child_docs', views.get_doc_tree, name='get_children'),
+    path('get_document', views.get_document, name='get_document')
 ]

@@ -2,7 +2,6 @@ import json
 
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
-from main.models import User
 
 from editor.models import SubDocument, RootDocument
 from ws_api.scripts.delta import process_edit
