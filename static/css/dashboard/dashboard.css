@@ -1,5 +1,57 @@
 #dashboard{
+    background-color: rgb(40,40,40);
+    color:white;
     height: 100vh;
-    width: 100vw;
+}
+#dashboard-main{
+    width: calc(100vw - 60px);
+
+}
+#sidebar{
+    width: 48px;
+    height: 100vh;
+    top:0;
+    right:0;
+    background-color: rgb(20,20,20);
 }
 
+.document{
+
+    border:1px solid rgba(255,255,255, 0.5);
+    background-color: transparent;
+    transition:border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+    margin:10px;
+}
+
+.document:hover{
+    border-color: rgb(27,163,70);
+
+    box-shadow: 0 4px 8px 0 rgba(27,163,70, 0.2);
+
+}
+
+.document-active{
+    background-color:rgba(27,163,70, 0.2);
+}
+
+.light-border{
+    border-color:rgba(255,255,255, 0.2) !important;
+}
+
+#searchbar{
+    border:1px solid rgba(255,255,255, 0.5);
+    background-color: transparent;
+    transition:border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+#searchbar:hover{
+    border-color: rgb(27,163,70) ;
+    box-shadow: 0 4px 8px 0 rgba(27,163,70, 0.2) ;
+}
+
+.documents{
+    overflow:auto;
+    overflow-x:hidden !important;
+    min-width: 300px;
+
+    height: calc(100vh - 55px);
+}

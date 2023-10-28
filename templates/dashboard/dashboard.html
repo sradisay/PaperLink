@@ -9,37 +9,49 @@
 
 
 {% block content %}
-    <link href="{% static "css/dashboard/dashboard.css" %}">
+    <input type="hidden" value="{{ request.user.username }}" id="username">
+    <link rel="stylesheet" href="{% static "css/dashboard/dashboard.css" %}"/>
+    <script src="{% static "js/dashboard/dashboard.js" %}"></script>
+    <div id="dashboard" class="overflow-hidden" >
+        <div class=""  id="dashboard-main">
+            <div class="row border-bottom light-border">
+                <div class="col-5 border-end light-border p-2">
+                    <a href="{% url "home" %}" class="nav-link"><h5 class="my-auto" style="color:#5ced73;">Paperlink</h5></a>
+                </div>
+                <div class="col-7 p-2 px-3">
+                    <input id=searchbar placeholder="Search" type="text" class="form-control rounded-pill text-white bg-transparent " />
+                </div>
 
-    <div id="dashboard" class="p-2 overflow-hidden" >
-        <div class="row" style="height: 38px;">
-            <div class="col-3 py-1 bg-light">
-                <h5 class="my-auto">Paperlink</h5>
             </div>
-            <div class="col-9 ">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-md-6 col-10" id="searchbar">
-                        <input placeholder="Search" type="text" class="form-control rounded-pill"/>
-                    </div>
-                    <div class="col-1">
-                        <button class="btn btn-outline-secondary" id="profile">
-                            <i class="bi bi-person"></i>
-                        </button>
-                    </div>
 
-
+            <div class="row" style="height:calc(100vh - 75px);">
+                <div class="col-md-5 col-sm-12 border-end light-border">
 
                 </div>
-            </div>
+                <div class="col-md-7 col-sm-12 p-2 documents overflow-scroll">
+                    <!-- Documents -->
+                    {% for doc in documents %}
+                        <div class="document card rounded-pill p-2 px-3" data-id="{{ doc.id }}" >
+                            <div class="d-flex justify-content-between my-auto">
+                                <span class="d-inline my-auto">{{ doc.name }}</span>
+                                <span class="text-muted d-inline my-auto">{{  doc.branch_owner }}</span>
 
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
         </div>
-        <div class="row" style="height:calc(100vh - 75px);">
-            <div class="col-3 bg-light">
+        <div id="sidebar" class="position-fixed p-1">
+            <button class="btn btn-outline-light m-auto mb-2" id="profile">
+                <i class="bi bi-person"></i>
+            </button>
 
-            </div>
-            <div class="col-9">
-
-            </div>
+            <button class="btn btn-outline-light m-auto mb-2" id="add">
+                <i class="bi bi-plus-lg"></i>
+            </button>
         </div>
 
 
