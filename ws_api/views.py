@@ -8,7 +8,7 @@ from django.http import HttpResponseBadRequest, JsonResponse
 from editor.models import SubDocument, RootDocument
 from ws_api.scripts.subsearch import sub_search
 
-base_doc = {"deltas": {}}
+base_doc = {"deltas": {}, "delta_order": []}
 
 
 @login_required()
