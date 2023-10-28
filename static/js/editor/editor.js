@@ -1,5 +1,5 @@
 // Scripts for editor frontend
-
+// hi
 const editor = document.getElementById("editor");
 
 // start with editor focused
