@@ -33,7 +33,7 @@ class EditConsumer(AsyncWebsocketConsumer):
             self.root_document = await sync_to_async(RootDocument.objects.get)(pk=self.document.root_document_id)
 
         if (self.root_document.branch_owner_id != self.user.id) and not \
-                (await sync_to_async(self.root_document.shared_users.get)(pk=self.user.id)):
+                (await sync_to_async(self.root_document.shared_uses.get)(pk=self.user.id)):
             await self.close()  # if requestor is not owner or shared user
             return
 
@@ -50,20 +50,23 @@ class EditConsumer(AsyncWebsocketConsumer):
 
     async def receive(self, text_data=None, bytes_data=None):
         # editor MUST be owner of relative branch
-        if self.user != self.document.branch_owner:
+        if self.user.id != self.document.branch_owner_id:
             await self.close()  # close connection if user is unauthorized to edit
             return
 
+        print(text_data)
         edit_json = json.loads(text_data)
 
         # call helper to process edit
         processed = await sync_to_async(process_edit)(self.document, edit_json["deltas"])
+        edit_json["deltas"] = processed
+        edit_json["type"] = "doc_edit"
 
         await self.channel_layer.group_send(
-            self.room_group_name, processed
+            self.room_group_name, edit_json
         )
 
-    async def edit_msg(self, event):
+    async def doc_edit(self, event):
         edit_data = event
 
         # send to WS (repeat)
