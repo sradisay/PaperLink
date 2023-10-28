@@ -29,7 +29,6 @@ class SubDocument(models.Model):
 
 class RootDocument(models.Model):
     branch_owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    root_document = models.ForeignKey("self", on_delete=models.CASCADE)
     shared_users = models.ManyToManyField(blank=True, to=User, related_name="root_document_shares")  # Shared Users
 
     document = models.JSONField()
