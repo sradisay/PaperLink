@@ -1,7 +1,37 @@
 {% extends "base/base.html" %}
 {% load static %}
-
-
 {% block content %}
-    <button class="btn btn-primary">Button Test</button>
+
+    {% comment %}this is imports the style sheets{% endcomment %}
+    <link href="{% static "css/main/main.css" %}">
+
+<div class="container-fluid p-7 text-black text-center">
+  <h1>Registration :D</h1>
+  <p>Welcome to paperlink registration/login page!</p>
+</div>
+
+<div class="container mt-5">
+
+  <div class="col">
+
+      <a class="btn btn-link" href="{% url "register" %}">
+                <div class="container mt-4">
+                    <div class="col-sm-4">
+                        <h5>Register</h5>
+                    </div>
+                </div>
+      </a>
+
+      <div class="container mt-1">
+          <div class="col-sm-4">
+              <h5>Login</h5>
+          </div>
+      </div>
+
+
+  </div>
+
+</div>
+
+
 {% endblock %}
