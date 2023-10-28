@@ -21,13 +21,14 @@ RootDocument (main)
 
 
 class SubDocument(models.Model):
+    root_document = models.ForeignKey('RootDocument', on_delete=models.CASCADE)
     branch_owner = models.ForeignKey(User, on_delete=models.CASCADE)  # User from either user or shared_users
     document = models.JSONField()
     sub_branches = models.ManyToManyField(to="self")
 
 
 class RootDocument(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Document Owner (main branch owner)
+    branch_owner = models.ForeignKey(User, on_delete=models.CASCADE)
     shared_users = models.ManyToManyField(to=User, related_name="root_document_shares")  # Shared Users
 
     document = models.JSONField()
