@@ -14,6 +14,7 @@ class EditConsumer(AsyncWebsocketConsumer):
         self.doc_pk = self.scope["url_route"]["kwargs"]["doc_pk"]
         self.is_root = self.scope["url_route"]["kwargs"]["is_root"]  # if doc is root doc or sub
         self.root = self.scope
+        self.room_group_name = f"edit_{self.doc_pk}"
 
         if self.is_root:
             self.DocumentModel = RootDocument
@@ -26,14 +27,17 @@ class EditConsumer(AsyncWebsocketConsumer):
             await self.close()  # exit as provided document does not exist OR invalid Document model
             return
 
-        if (self.document.root_document.branch_owner != self.user) and not (
-        self.document.root_document.shared_users.get(self.user)):
+        if self.is_root:
+            self.root_document = self.document
+        else:
+            self.root_document = await sync_to_async(RootDocument.objects.get)(pk=self.document.root_document_id)
+
+        if (self.root_document.branch_owner_id != self.user.id) and not \
+                (await sync_to_async(self.root_document.shared_users.get)(pk=self.user.id)):
             await self.close()  # if requestor is not owner or shared user
             return
 
         # after guard clauses
-
-        self.room_group_name = f"edit_{self.doc_pk}"
 
         # join group
         await self.channel_layer.group_add(self.room_group_name, self.channel_name)
