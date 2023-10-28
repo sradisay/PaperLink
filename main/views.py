@@ -20,3 +20,11 @@ def register(request):
             return redirect('/dashboard')
         else:
             return render(request, 'registration/register.html', context={'form': form})
+
+
+def info(request):
+    return render(request, 'info/info.html')
+
+
+
+

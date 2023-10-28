@@ -1,2 +1,11 @@
 /*This is the style sheet*/
 
+.decorator {
+    color:darkslategray;
+    text-decoration: none;
+}
+    .decorator:hover {
+        font-size:25px;
+        background-color: transparent;
+        color:black;
+    }
