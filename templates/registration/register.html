@@ -1,0 +1,20 @@
+{% extends "base/base.html" %} {% comment %} copy the code in login.html, everything that says login rename to register {% endcomment %}
+{% load static %}
+{% block content %}
+
+<h1 class="d-flex justify-content-center py-2 my-5">Register</h1>
+    <div class="d-flex justify-content-center ">
+        <form method="POST" id="Register-form" class=" card shadow p-5">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.errors }}
+                    <label for="{{ field.html_initial_id  }}">{{ field.label_tag }}</label>
+                    <input required type="{{ field.widget_type }}" class="form-control" name="{{ field.html_name  }}" id="{{ field.html_initial_id }}" aria-describedby="{{ field.name  }}" placeholder="{{ field.label  }}">
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+{% endblock %}
