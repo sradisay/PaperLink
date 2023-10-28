@@ -5,6 +5,7 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from main.models import User
 
 from editor.models import SubDocument, RootDocument
+from ws_api.scripts.delta import process_edit
 
 
 class EditConsumer(AsyncWebsocketConsumer):
@@ -52,9 +53,10 @@ class EditConsumer(AsyncWebsocketConsumer):
         edit_json = json.loads(text_data)
 
         # call helper to process edit
+        processed = await sync_to_async(process_edit)(self.document, edit_json["deltas"])
 
         await self.channel_layer.group_send(
-            self.room_group_name, edit_json
+            self.room_group_name, processed
         )
 
     async def edit_msg(self, event):
