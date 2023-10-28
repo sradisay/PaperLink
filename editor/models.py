@@ -12,9 +12,9 @@ Structured as a tree of branches
 
 RootDocument (main)
     -> SubDocument
-        ->  SubDocument2
+        ->  SubDocument.1
             -> ...
-    -> SubDocument3
+    -> SubDocument1
         -> ...
 
 """
@@ -22,13 +22,13 @@ RootDocument (main)
 
 class SubDocument(models.Model):
     branch_owner = models.ForeignKey(User, on_delete=models.CASCADE)  # User from either user or shared_users
-    document = models.JSONField(default={})
-    sub_branches = models.ManyToManyField(blank=True, null=True, to="self")
+    document = models.JSONField()
+    sub_branches = models.ManyToManyField(to="self")
 
 
 class RootDocument(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Document Owner (main branch owner)
-    shared_users = models.ManyToManyField(blank=True, null=True, to=User)  # Shared Users
+    shared_users = models.ManyToManyField(to=User, related_name="root_document_shares")  # Shared Users
 
-    document = models.JSONField(default={})
-    sub_branches = models.ManyToManyField(blank=True, null=True, to=SubDocument)
+    document = models.JSONField()
+    sub_branches = models.ManyToManyField(to=SubDocument)
