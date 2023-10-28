@@ -1,0 +1,8 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+
+    {% for document in documents %}
+        {{ document.name }}
+    {% endfor %}
+{% endblock %}
