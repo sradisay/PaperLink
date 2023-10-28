@@ -9,7 +9,7 @@ from editor.models import SubDocument, RootDocument
 from ws_api.scripts.subsearch import sub_search
 from ws_api.scripts.getdoc import doc_exists
 
-base_doc = {"deltas": {}, "delta_order": []}
+base_doc = {"deltas": []}
 
 
 @login_required()
