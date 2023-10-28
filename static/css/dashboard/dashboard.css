@@ -55,3 +55,11 @@
 
     height: calc(100vh - 55px);
 }
+
+.page{
+    aspect-ratio: 1/1.294;
+
+}
+:root {
+  color-scheme: dark;
+}
