@@ -10,6 +10,7 @@ editor.addEventListener('blur', () => { editor_focused = false });
 
 document.addEventListener("keydown", (event) => {
     if (editor_focused) {
+        event.preventDefault(); // disallow changing the html element
         // Get the key from the event object
         const key = event.key
 
