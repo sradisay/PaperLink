@@ -29,7 +29,7 @@ html, body{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    transform: scale(1);
+    transform: scale(1.5);
     transform-origin: top center;
 }
 
@@ -43,7 +43,6 @@ html, body{
     border: 0.25px solid black; /* Border around the paper */
     padding: 0.5in; /* DOCUMENT MARGINS ARE ADJUSTABLE HERE */
     box-sizing: border-box;
-
     display: inline;
 }
 

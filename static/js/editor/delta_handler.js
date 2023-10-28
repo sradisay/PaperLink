@@ -23,5 +23,11 @@ function update(key, pos) {
     console.log(pos);
     if (!awaiting_save) awaiting_save = true;
 
+    // handle deletions
+    if (key === "Backspace" || key === "Delete") {
+        if (pos.selection) {
+
+        }
+    }
 
 }
