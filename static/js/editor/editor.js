@@ -25,6 +25,7 @@ class DeltaList{
             delta_node.prev = this.tail;
             this.tail = delta_node;
         }
+        this.size++;
     }
     insert_beginning(delta_node){
         if (this.size === 0){
@@ -35,6 +36,7 @@ class DeltaList{
             delta_node.next = this.head;
             this.head = delta_node;
         }
+        this.size++;
     }
     insert(insert_after_id, delta_node){
         let left = this.map[insert_after_id];
@@ -43,6 +45,13 @@ class DeltaList{
         right.prev = delta_node;
         delta_node.prev = left;
         delta_node.next = right;
+        this.size++;
+    }
+    delete(id){
+        let delete_node = this.map[id];
+        delete_node.prev.next = delete_node.next;
+        delete_node.next.prev = delete_node.prev;
+        delete this.map[id];
     }
 }
 
