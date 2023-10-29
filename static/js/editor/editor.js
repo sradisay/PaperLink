@@ -72,6 +72,15 @@ function load_documents(){
 
             consume(data.deltas[i]);
         }
+
+        const lastSpan = document.getElementById("editor").lastElementChild;
+        let textNode = document.getElementById(lastSpan.id).firstChild;
+        let range = document.createRange();
+        let sel = window.getSelection();
+        range.setStart(textNode, lastSpan.innerText.length);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
     });
 }
 
