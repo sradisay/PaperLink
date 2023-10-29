@@ -1,13 +1,24 @@
 // Script for consuming deltas on the editor
+
+
+function setCursor(id, index){
+    let textNode = document.getElementById(id).firstChild;
+    let range = document.createRange();
+    let sel = window.getSelection();
+    range.setStart(textNode, index);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+}
 function consume(delta)
 {
     let change_type = delta.change_type;
 
     if (change_type === "add")
     {
-        let pos = delta.pos;
-        let id = delta.server_id;
-        let base_id = pos.base_id;
+        let id = ("server_id" in delta) ? delta.server_id : delta.temp_id;
+
+        let base_id = delta.pos.base_id;
         let text = delta.text;
         let meta = delta.meta;
         let styles = meta.styles;
@@ -26,14 +37,23 @@ function consume(delta)
             }
         }
 
-
-        let prev = $("#" + base_id);
-        if (prev.length !== 0)
-        {
-            prev.insertAfter(new_delta);
+        if (base_id === "editor"){
+             $("#editor").prepend(new_delta);
+             if (!delta.split) {
+                setCursor(new_delta.attr('id'), new_delta.text().length);
+            }
         } else {
-            $("#editor").append(new_delta);
+            let prev = $("#" + base_id);
+            if (prev.length !== 0) {
+                prev.after(new_delta);
+                if (!delta.split) {
+                    setCursor(new_delta.attr('id'), new_delta.text().length);
+                }
+            } else {
+                $("#editor").prepend(new_delta);
+            }
         }
+
 
     }
     else if (change_type === "remove")
@@ -44,11 +64,31 @@ function consume(delta)
             let id = ids[0];
             let st_index = pos.st_index;
             let ed_index = pos.ed_index;
-            if (st_index !== null){
+            if ("st_index" in pos){
                 let delta = $("#" + id);
                 let text = delta.text();
                 let new_text = text.slice(0, st_index) + text.slice(ed_index);
                 delta.text(new_text);
+                if (delta.text().length === 0){
+                    if (document.getElementById("editor").childElementCount !== 1){
+                        if (delta.prev().attr('id') !== undefined) {
+                            setCursor(delta.prev().attr('id'), delta.prev().text().length);
+                        } else {
+                            if (delta.next().text().length !== 0) {
+                                setCursor(delta.next().attr('id'), 0);
+                            }
+                        }
+                        delta.remove();
+                    }
+                }
+                else
+                {
+                    if (delta.attr('id') !== "editor") {
+                        setCursor(id, st_index);
+                    }
+                }
+            } else {
+                $("#" + id).remove();
             }
         }
         else
@@ -56,13 +96,11 @@ function consume(delta)
             for(let i = 0; i < ids.length; i++){
                 let id = ids[i];
                 let delta = $("#" + id);
-                delta.remove();
+                if (document.getElementById("editor").childElementCount !== 1){
+                    delta.remove();
+                }
             }
         }
-    }
-    else
-    {
-
     }
 
 }

@@ -4,6 +4,7 @@
 
 <div id="page">
     <div class="toolbar">
+        <input type="hidden" value="{{ document.id }}" id="doc-id" />
         <!-- TODO: rewrite deprecated text modifiers -->
         <button class="tool-items fa fa-underline"  onclick="document.execCommand('underline', false, '');">
         </button>
@@ -53,9 +54,11 @@
         <button class="tool-items fa fa-align-right" onclick="document.execCommand('justifyRight',false,'')"></button>
     </div>
 
-    <div class="editor_container">
-        <div id="editor" class="flexbox" contenteditable="true">
-            <span class="delta" id="delta_0" style="font-size: 12px">Hello</span><span class="delta" id="delta_1" style="font-size: 12px; font-weight: bold">World</span><span class="delta" id="delta_2" style="font-size: 12px">!</span>
+    <div class="editor_container ">
+        <div id="editor"  contenteditable="true">
+            <span class="delta" id="delta_0" style="font-family: Times New Roman; font-size:12px;">Hello</span>
+            <span class="delta" id="delta_1" style="font-family: Times New Roman; font-size:12px;">World</span>
+            <span class="delta" id="delta_2" style="font-family: Times New Roman; font-size:12px;">!</span>
         </div>
     </div>
 </div>

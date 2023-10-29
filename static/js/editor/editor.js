@@ -23,7 +23,7 @@ document.addEventListener("keydown", (event) => {
                 console.log("bolden B)");
             }
         }
-        else if (key.length === 1 || key === "Backspace" || key === "Delete") {
+        else if (key.length === 1 || key === "Backspace" || key === "Delete" || key === "Enter") {
             let pos, is_selection;
             const selection = window.getSelection();
             if (selection.isCollapsed){
@@ -58,7 +58,6 @@ document.addEventListener('paste', (event) => {
     const clipboardData = event.clipboardData;
 
 });
-
 
 
 

@@ -26,8 +26,11 @@ html, body{
 
 
 .editor_container {
-    display: flex;
-    justify-content: center;
+    border: 1px solid black; /* Border around the paper */
+    height:100vh;
+    aspect-ratio: 1/1.294;
+    margin:auto;
+
     flex-wrap: wrap;
     transform: scale(1.5);
     transform-origin: top center;
@@ -36,16 +39,31 @@ html, body{
 
 #editor{
     width: 80vh; /* Width of 8.5 inches */
-    max-width: 8.5in;
-    height: 100vh;
-    max-height: 11in;
+
     margin: 0 auto 5px;
-    border: 0.25px solid black; /* Border around the paper */
+
     padding: 0.5in; /* DOCUMENT MARGINS ARE ADJUSTABLE HERE */
     box-sizing: border-box;
-    display: inline;
+    display: inline-flex;
+    font-size: 0;
+    line-height: 1.2;
+    flex-wrap:wrap;
+    height: 12px;
+    box-shadow: none;
+}
+#editor:hover{
+    border:none;
+    box-shadow: none;
+}
+#editor:focus{
+    border:none;
+    box-shadow: none;
+}
+#editor:active{
+    border:none;
+    box-shadow: none;
 }
 
 .delta{
-    display: inline;
+    display: inline-block;
 }
