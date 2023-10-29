@@ -1,20 +1,81 @@
-{% extends "base/base.html" %} {% comment %} copy the code in login.html, everything that says login rename to register {% endcomment %}
+{% extends "base/base.html" %}
 {% load static %}
 {% block content %}
 
-<h1 class="d-flex justify-content-center py-2 my-5">Register</h1>
-    <div class="d-flex justify-content-center ">
-        <form method="POST" id="Register-form" class=" card shadow p-5">
+        {# {% comment %}this is imports the style sheets{% endcomment %}#}
+    <link href="{% static "css/main/main.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/main/main.css" %}">
+    <script defer src={% static "js/app/app.js" %}></script>
+
+    <nav class="position-absolute navbar navbar-expand-sm navbar-dark">
+        <div class="container-fluid scroller">
+            {#Header for the nav bar#}
+            <a class="navbar-brand" href="{% url 'home' %}" id="coloredbrand">Paperlink</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+
+                    {#dashboard button#}
+                    <li class="nav-item">
+                        <a class="nav-link" href={% url 'dashboard' %}>Dashboard</a>
+                    </li>
+                    {#info button#}
+                    <li class="nav-item">
+                        <a class="nav-link" href={% url 'info' %}>Info</a>
+                    </li>
+                    {#home button#}
+                    <li class="nav-item">
+                        <a class="nav-link" href={% url 'home' %}>Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <body>
+    <div class="login-box">
+        <h2>Registration</h2>
+        <form method="POST" id="Register-form">
             {% csrf_token %}
-            {% for field in form %}
-                <div class="form-group">
-                    {{ field.errors }}
-                    <label for="{{ field.html_initial_id  }}">{{ field.label_tag }}</label>
-                    <input required type="{{ field.widget_type }}" class="form-control" name="{{ field.html_name  }}" id="{{ field.html_initial_id }}" aria-describedby="{{ field.name  }}" placeholder="{{ field.label  }}">
-                    <small class="form-text text-muted">{{ field.help_text }}</small>
-                </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <form action="submit">
+            <div class="user-box">
+                <input type="text" required>
+                <label for="username">Username</label>
+            </div>
+
+            <div class="user-box">
+                <input type="email" required>
+                <label for="email">Email</label>
+            </div>
+
+            <div class="user-box">
+                <input type="password" required>
+                <label for="password">Password</label>
+            </div>
+
+            <div class="user-box">
+                <input type="password" required>
+                <label for="confirm-password">Confirm Password</label>
+            </div>
+
+            <a href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Submit
+
+            </a>
         </form>
     </div>
+
+    </body>
 {% endblock %}
+
+{#ADD NAV BAR
+MAKE LOOK COOL#}

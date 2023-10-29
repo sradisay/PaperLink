@@ -82,7 +82,7 @@ def get_document(request):
         doc_obj = RootDocument
     elif sub_doc:
         doc = sub_doc
-        doc_obj = RootDocument
+        doc_obj = SubDocument
     else:
         return JsonResponse({"msg": "invalid doc"}, status=400)
 

@@ -1,7 +1,69 @@
 {% extends "base/base.html" %}
 {% load static %}
-{% comment %}This is the info page about the project{% endcomment %}
-
 {% block content %}
+
+{# {% comment %}this is imports the style sheets{% endcomment %}#}
+    <link href="{% static "css/main/main.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/main/main.css" %}">
+    <script defer src={% static "js/app/app.js" %}></script>
+
+    {#This is the top navigation bar#}
+<nav class="position-absolute navbar navbar-expand-sm navbar-dark">
+  <div class="container-fluid">
+      {#Header for the nav bar#}
+    <a class="navbar-brand" href="{% url 'home' %}" id="coloredbrand">Paperlink</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+
+      {#If user is authenticated they dont need to worry about seeing the register and login buttons#}
+          {% if not user.is_authenticated  %}
+                    {#Register button#}
+          <li class="nav-item">
+              <a class="nav-link" href={% url 'register' %}>Register</a>
+          </li>
+            {#Login button#}
+          <li class="nav-item">
+              <a class="nav-link" href={% url 'login' %}>Login</a>
+          </li>
+          {% else %}
+              {#Logout button incase user wants to logout#}
+              <li class="nav-item">
+                  <a class="nav-link" href={% url 'logout' %}>Logout</a>
+              </li>
+          {% endif %}
+
+            {#dashboard button#}
+        <li class="nav-item">
+          <a class="nav-link" href={% url 'dashboard' %}>Dashboard</a>
+        </li>
+
+          <li class="nav-item">
+              <a class="nav-link" href={% url 'home' %}>Home</a>
+          </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+   <img id="squiggle" src="{% static "css/main/images/greenSquiggleNew.png" %}" class="img-fluid" alt="Responsive image">
+    <article>
+            {#this is the body header#}
+    <section>
+    <header>
+        <div class="hidden" id="header">
+            <h2 class="text-white display-1 slideInLeft fw-bold"> Information
+                <small class="text-muted slideInLeft fadeIn fade--delay fw-normal"> learn more about us!
+                </small>
+            </h2>
+        </div>
+    </header>
+    </section>
+
+    </article>
 
 {% endblock %}
