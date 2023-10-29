@@ -62,7 +62,29 @@ function consume(delta)
     }
     else
     {
+        let pos = delta.pos;
+        let ids = pos.base_ids;
+        let meta = delta.meta;
+        let styles = meta.styles;
 
+        for(let i = 0; i < ids.length; i++){
+            let id = ids[i];
+            let delta = $("#" + id);
+            delta.css("font-family", meta.font);
+            delta.css("font-size", meta.size + "px");
+
+            for (let i = 0; i < styles.length; i++)
+            {
+                let style = styles[i];
+                if (style === "bold"){
+                    delta.css("font-weight", "bold");
+                } else if(style === "italic"){
+                    delta.css("font-style", "italic");
+                } else if(style === "underline"){
+                    delta.css("text-decoration", "underline");
+                }
+            }
+        }
     }
 
 }
