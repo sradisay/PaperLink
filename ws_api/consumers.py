@@ -13,16 +13,19 @@ class EditConsumer(AsyncWebsocketConsumer):
         self.doc_pk = self.scope["url_route"]["kwargs"]["doc_pk"]
         self.room_group_name = f"edit_{self.doc_pk}"
 
-        root_doc = RootDocument.objects.filter(pk=self.doc_pk).first()
-        sub_doc = SubDocument.objects.filter(pk=self.doc_pk).first()
+        root_doc = await sync_to_async(RootDocument.objects.filter)(pk=self.doc_pk)
+        sub_doc = await sync_to_async(SubDocument.objects.filter)(pk=self.doc_pk)
+
+        root_doc = await sync_to_async(root_doc.first)()
+        sub_doc = await sync_to_async(sub_doc.first)()
 
         if root_doc:
             self.document = root_doc
-            doc_obj = RootDocument
+            self.doc_obj = RootDocument
             self.is_root = True
         elif sub_doc:
             self.document = sub_doc
-            doc_obj = SubDocument
+            self.doc_obj = SubDocument
             self.is_root = False
         else:
             await self.close()  # exit as provided document does not exist OR invalid Document model
