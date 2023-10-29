@@ -60,10 +60,6 @@ document.addEventListener('paste', (event) => {
 });
 
 
-function consumeDelta(delta){
-
-}
-
 
 
 
