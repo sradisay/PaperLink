@@ -97,7 +97,7 @@ function update(key, pos, is_selection) {
     if (pos.base_delta === "editor" || pos.base_delta === "" || pos.base_delta === undefined || pos.base_delta === null) {
         let new_delta = document.getElementById("editor").firstElementChild;
         if (new_delta === null || new_delta === undefined) {
-            let new_delta = $(`<span style="font-family: 'Times New Roman',sans-serif; font-size:12px;" id="root"></span>`);
+            let new_delta = $(`<span style="font-family: 'Times New Roman',sans-serif; font-size:18px;" id="root"></span>`);
             $("#editor").append(new_delta);
             pos.base_delta = new_delta.attr('id');
         }
@@ -203,7 +203,7 @@ function update(key, pos, is_selection) {
                     "index": 0
                 },
                 "meta": {
-                    "size": 12,
+                    "size": 18,
                     "font": "Times New Roman",
                     "styles": []
                 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static "css/editor/document_viewer.css" %}"/>
     <script src="{% static "js/editor/document_viewer.js" %}"></script>
 
-    <div id="document-viewer">
+    <div id="document-viewer" style="overflow: hidden;">
         <nav class="position-fixed p-1" id="toolbar">
             <div class="d-flex justify-content-between"> <!-- Center the entire container -->
                 <h5 class="my-auto text-white d-flex align-items-center top-nav-item">
@@ -79,8 +79,8 @@
                         <i class="bi bi-signpost-split "></i> Branch Here
                     </button>
                 </div>
-                    <a href="/editor/version-history/{{ document.id }}/" class="btn btn-outline-info " id="btn-pen">
-                        <i class="bi bi-eye "></i> Versions
+                    <a href="/editor/{{ document.id }}/" class="btn btn-outline-info " id="btn-pen">
+                        <i class="bi bi-eye "></i> Viewer
                     </a>
 
 
@@ -88,8 +88,13 @@
 
             </div>
         </nav>
-        <div id="viewer">
-            {% include "editor/editor.html" %}
+        <div style="padding-top:150px; " class="row">
+            <div class="col-6 p-0 m-0" id="viewer" style="border-right:white solid 1px;">
+                {% include "editor/editor.html" %}
+            </div>
+            <div class="col-6 p-0 m-0" id="versions" style="height:auto;">
+                {% include "editor/versions.html" %}
+            </div>
         </div>
     </div>
 {% endblock %}

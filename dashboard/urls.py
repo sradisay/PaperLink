@@ -7,4 +7,6 @@ urlpatterns = [
     path('rename', views.document_rename, name='document_rename'),
     path('delete', views.document_delete, name='document_delete'),
 
+
+
 ]

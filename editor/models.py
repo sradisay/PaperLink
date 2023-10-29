@@ -31,7 +31,7 @@ class SubDocument(models.Model):
 class RootDocument(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
     branch_owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    shared_users = models.ManyToManyField(blank=True, to=User, related_name="root_document_shares")  # Shared Users
+    shared_users = models.ManyToManyField(blank=True, to=User, related_name="root_document_shares")
 
     document = models.JSONField()
     sub_branches = models.ManyToManyField(blank=True, to=SubDocument)

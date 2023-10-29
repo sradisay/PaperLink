@@ -1,0 +1,51 @@
+
+<div style="height:100%;width:100%;" class="p-3">
+    <label for="slider">Versions</label>
+    <input type="range" id="slider" name="slider" min="0" max="100" value="0" style="width:100%;">
+
+    <p>Selected Version: <span id="sliderValue">50</span></p>
+
+    <div id="version-viewer">
+        <div id="editor-container">
+            <div id="editor" >
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    let deltas = [];
+    const slider = document.getElementById("slider");
+    const sliderValue = document.getElementById("sliderValue");
+
+    // Update the selected value when the slider is changed
+    slider.addEventListener("input", function() {
+        sliderValue.textContent = slider.value;
+    });
+
+    function load_documents(id){
+        $("#editor").empty();
+
+        fetch(`/api/get_document?doc_id=${id}`, {
+            method: 'GET',
+        }).then((response) => {
+            return response.json();
+        }).then((data) => {
+            for(let i = 0; i < data.deltas.length; i++) {
+                deltas.push(data.deltas[i]);
+                consume(data.deltas[i]);
+            }
+        });
+        console.log(deltas.length)
+        slider.max = deltas.length - 1;
+
+    }
+
+
+    $(document).ready(function(){
+        load_documents("{{ document.id }}");
+    });
+
+
+</script>

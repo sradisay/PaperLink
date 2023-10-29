@@ -1,6 +1,6 @@
 
 .editor_container {
-    width: 70vw;
+    width: 100%;
 
     margin:auto;
     overflow: hidden;
@@ -8,17 +8,17 @@
 
 
 #editor{
-    width: 60%;
-    min-width: 600px;
+    width: 90%;
+    max-width: 800px;
+    min-width: 300px;
     aspect-ratio: 1/1.294;
     overflow: hidden;
 
     margin: 0 auto 5px;
 
 
-    padding: 0.5in;
-    scale: 1.5;
-    translate: 0 200px;
+    padding: 0;
+
 
 
 
