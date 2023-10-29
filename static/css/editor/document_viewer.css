@@ -1,0 +1,73 @@
+:root {
+  color-scheme: dark;
+}
+
+#document-viewer{
+    background-color: rgb(40,40,40);
+    color:white;
+    height: 100vh;
+}
+
+#toolbar{
+    height:auto;
+    width: 100%;
+    background-color: rgb(20,20,20);
+
+}
+
+.text-accent{
+    color:#5ced73;
+}
+
+.btn-outline-accent{
+    color:#5ced73;
+    border:1px solid #5ced73;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-outline-accent:hover{
+    color:white;
+    border:1px solid #5ced73;
+    background-color: #5ced73;
+}
+
+.btn-outline-accent:active{
+    color:white;
+    border:1px solid #5ced73;
+    background-color: #5ced73;
+    opacity: 0.8;
+}
+
+.big-icon{
+    font-size: 35px;
+    margin: 10px;
+}
+
+.top-nav-item{
+    padding: 0;
+    margin:0;
+    width:84px;
+    overflow: visible;
+    text-wrap: none!important;
+    white-space: nowrap;
+}
+
+.btn-icon{
+    background-color:transparent;
+    color:white;
+}
+
+.btn-icon:hover{
+    background-color: rgba(255,255,255,0.1);
+    color:white;
+}
+
+.btn-icon:active{
+    background-color: rgba(255,255,255,0.3);
+    color:white;
+}
+
+.border-light{
+    border-color:rgba(255,255,255, 0.2) !important;
+}
