@@ -1,5 +1,21 @@
 $(document).ready(function() {
 
+
+    function load_documents(id){
+        $("#editor").empty();
+
+        fetch(`/api/get_document?doc_id=${id}`, {
+            method: 'GET',
+        }).then((response) => {
+            return response.json();
+        }).then((data) => {
+            for(let i = 0; i < data.deltas.length; i++){
+
+            consume(data.deltas[i]);
+        }
+    });
+}
+
     let docs = $(".document");
     docs.on("click", function() {
         $(".document").removeClass("document-active");
@@ -8,15 +24,11 @@ $(document).ready(function() {
         $("#document-name").text(text);
         $("#pages").removeClass("d-none");
 
-        fetch("/api/get_document?id="+$(this).data("id"), {
-            method: "GET",
-        }).then(response => response.json())
-        .then(data => {
-
-
-        });
+        load_documents($(this).data("id"));
 
     });
+
+
 
     $("#searchbar").on("keyup", function() {
         let value = $(this).val().toLowerCase();

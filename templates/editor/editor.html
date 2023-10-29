@@ -2,6 +2,10 @@
 {% load static %}
 
 <input type="hidden" id="doc-id" value="{{ document.id }}"/>
+{% if document != null %}
+    <input type="hidden" value="false" id="block-text"/>
+{% endif %}
+
 <div id="page" style="background-color:rgb(40,40,40);">
     <div class="editor_container ">
         <div id="editor"  contenteditable="true">
@@ -9,6 +13,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script src="{% static 'js/editor/editor.js' %}"></script>

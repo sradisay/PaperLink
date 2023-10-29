@@ -1,20 +1,25 @@
 
 .editor_container {
-    width: 800px;
+    width: 70vw;
 
     margin:auto;
+    overflow: hidden;
 }
 
 
 #editor{
-    width: 100%;
-    z-index: -3;
+    width: 60%;
+    min-width: 600px;
+    aspect-ratio: 1/1.294;
+    overflow: hidden;
 
     margin: 0 auto 5px;
 
 
     padding: 0.5in;
     scale: 1.5;
+    translate: 0 200px;
+
 
 
     font-size: 0;

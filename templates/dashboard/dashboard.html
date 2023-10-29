@@ -9,11 +9,13 @@
 
 
 {% block content %}
-    <input type="hidden" value="{{ request.user.username }}" id="username">
+    <input type="hidden" value="{{ request.user.username }}" id="username"/>
+    <input type="hidden" value="{{ documents.0.id }}" id="doc-id"/>
+    <input type="hidden" value="true" id="block-text"/>
     <link rel="stylesheet" href="{% static "css/dashboard/dashboard.css" %}"/>
 
     {% include "dashboard/dashboard_modals.html" %}
-
+    <script src="{% static "js/editor/delta_consumer.js" %}"></script>
     <script src="{% static "js/dashboard/dashboard.js" %}"></script>
     <div id="dashboard" class="overflow-hidden" >
         <div class=""  id="dashboard-main">
@@ -35,7 +37,16 @@
                             <button class="btn btn-outline-light mt-3 " id="go-btn" style="">Go</button>
                         </div>
                         <div >
-                            <div class="m-4 border-white border page rounded" ></div>
+
+                                <div class="m-4 border-white border page rounded" >
+                                    <div id="editor-container">
+                                        <div id="editor" >
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                         </div>
 
