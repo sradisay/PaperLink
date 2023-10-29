@@ -21,8 +21,10 @@ base_doc = {"deltas": [
             "index": 0
         },
         "meta": {
-
-        }
+            "size": 12,
+            "font": "Times New Roman",
+            "styles": ["bold", "underlined"]
+        },
     }
 ]}
 
