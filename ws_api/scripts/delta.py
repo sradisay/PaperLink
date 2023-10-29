@@ -6,9 +6,9 @@ def process_edit(document, deltas):
 
     for delta in deltas:
         assigned_id = str(uuid.uuid4())
-        doc_json["deltas"].append(delta)
-
         delta["server_id"] = assigned_id
+
+        doc_json["deltas"].append(delta)
 
     document.save()
 
