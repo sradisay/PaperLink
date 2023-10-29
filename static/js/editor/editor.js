@@ -10,7 +10,9 @@ editor.addEventListener('blur', () => { editor_focused = false });
 
 document.addEventListener("keydown", (event) => {
     if (editor_focused) {
-        event.preventDefault(); // disallow changing the html element
+        if (!(event.key.startsWith("Arrow") || event.ctrlKey || event.altKey )) {
+            event.preventDefault(); // disallow changing the html element
+        }
         // Get the key from the event object
         const key = event.key
 
@@ -22,32 +24,32 @@ document.addEventListener("keydown", (event) => {
             }
         }
         else if (key.length === 1 || key === "Backspace" || key === "Delete") {
-            let pos;
+            let pos, is_selection;
             const selection = window.getSelection();
             if (selection.isCollapsed){
+                is_selection = false;
                 const range = selection.getRangeAt(0);
                 let parentElement = range.startContainer.parentNode;
                  pos = {
-                    selection: false,
                     base_delta: parentElement.id,
                     index: range.startOffset
                 }
             }
             else {
+                is_selection = true;
                 const range = selection.getRangeAt(0);
                 const startNode = range.startContainer.parentNode;
                 const endNode = range.endContainer.parentNode;
                 const startIndex = range.startOffset;
                 const endIndex = range.endOffset;
                 pos = {
-                    selection: true,
-                    start_delta: startNode.id,
+                    start_delta_id: startNode.id,
                     start_index: startIndex,
-                    end_delta: endNode.id,
+                    end_delta_id: endNode.id,
                     end_index: endIndex
                 }
             }
-            update(key, pos);
+            update(key, pos, is_selection);
         }
     }
 });
@@ -56,6 +58,12 @@ document.addEventListener('paste', (event) => {
     const clipboardData = event.clipboardData;
 
 });
+
+
+function consumeDelta(delta){
+
+}
+
 
 
 
