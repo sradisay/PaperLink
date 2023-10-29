@@ -1,11 +1,203 @@
-/*This is the style sheet*/
-
-.decorator {
-    color:darkslategray;
-    text-decoration: none;
+body{
+background-color: black;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
-    .decorator:hover {
-        font-size:25px;
-        background-color: transparent;
-        color:black;
-    }
+
+section{
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+  scroll-snap-align: start;
+}
+
+html{
+  scroll-snap-type: y proximity;
+  height: 100%;
+}
+
+#header{
+  position: absolute;
+  left: 215px;
+  top: 300px;
+  width: 100%;
+}
+
+#squiggle{
+  position: absolute;
+}
+
+#coloredbrand{
+  color: #5ced73;
+}
+
+/*utilit classes*/
+
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.6);
+
+  border: 10px;
+  border-radius: 2em;
+}
+
+.login-box h2{
+  margin: 0 0 30px;
+  padding: 0;
+  color: white;
+  text-align: center;
+}
+
+.login-box .user-box{
+  position: relative;
+}
+
+.login-box .user-box input{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: white;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid white;
+  outline: none;
+  background-color: transparent;
+}
+
+.login-box .user-box label{
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: white;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #5ced73;
+  font-size: 12px;
+}
+
+.login-box form a{
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #5ced73;
+  font-size: 16px;
+  border-radius: 25px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+}
+
+.login-box a:hover{
+  background-color: #5ced73;
+  color: white;
+  border:5px;
+  box-shadow: 0 0 5px #5ced73, 0 0 25px #5ced73, 0 0 50px #5ced73, 0 0 100px #5ced73;
+}
+
+
+
+.animate--delay{
+  animation-delay: 5s;
+}
+
+.fade--delay{
+  animation-delay: 10s;
+}
+
+.fade--no--delay{
+  animation-delay: 0s;
+}
+
+.no-underline{
+  text-decoration: none;
+}
+
+.hidden{
+  opacity: 0;
+  filter: blur(5px);
+  transition: all 1s;
+}
+
+.show{
+  opacity: 1;
+  filter: blur(0);
+}
+
+.slideInLeft{
+  animation: slideInLeft 2s ease-in-out;
+}
+
+.fadeIn{
+  animation: fadeIn 8s;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card {
+  width: 300px;
+  height: 400px;
+  border: solid transparent;
+  background-color: #d3d3d4; /* Change this to the desired color */
+  color: #333; /* Change text color if necessary */
+}
+
+.navbar{
+  width: 100%;
+  z-index: 10;
+}
+
+/*Media queuey*/
+@media(prefers-reduced-motion) {
+  .hidden{
+    transition: none;
+  }
+}
+
+/*Animations*/
+@keyframes slideInLeft {
+  from{
+    transform: translateX(-1175px);
+  }
+  to{
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+/*presents the website as dark mode*/
+:root {
+  color-scheme: dark;
+}
