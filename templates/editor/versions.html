@@ -47,10 +47,10 @@
     slider.addEventListener("input", function() {
         sliderValue.textContent = slider.value;
         $("#editor2").empty();
-        let sub_deltas = deltas.slice(0, slider.value);
-        for (let i = 0; i < sub_deltas.length; i++) {
-            let delta = sub_deltas[i];
-            consume_over(delta, "editor2");
+        let sub_deltas3 = deltas.slice(0, slider.value);
+        for (let i = 0; i < sub_deltas3.length; i++) {
+            let delta2 = sub_deltas3[i];
+            consume_over(delta2, "editor2");
         }
     });
 

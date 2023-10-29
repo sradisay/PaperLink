@@ -28,6 +28,9 @@ const ws = new WebSocket(`ws://127.0.0.1:8000/ws/edit/${doc_id}/`);
 
 ws.addEventListener('message', (e) => {
     console.log("saved")
+    for (let i = 0; i < e.data.length; i++){
+        $("#"+e.data[i].client_id).attr("id", e.data[i].temp_id);
+    }
 });
 setInterval( () => {
     if (awaiting_save) {
