@@ -55,16 +55,15 @@
 
     <div class="editor_container">
         <div id="editor" class="flexbox" contenteditable="true">
-            <span class="delta" id="0" oindex="0" style="font-size: 12px">Hello</span><span class="delta" id="1" oindex="1" style="font-size: 12px; font-weight: bold">World</span><span class="delta" id="2" oindex="2" style="font-size: 12px">!</span>
+            <span class="delta" id="delta_0" style="font-size: 12px">Hello</span><span class="delta" id="delta_1" style="font-size: 12px; font-weight: bold">World</span><span class="delta" id="delta_2" style="font-size: 12px">!</span>
         </div>
     </div>
-
 </div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="{% static 'js/editor/editor.js' %}"></script>
-<script src="{% static 'js/editor/delta_handler.js' %}"></script>
-<script src="{% static 'js/editor/load_document.js' %}"></script>
+<script src="{% static 'js/editor/delta_generator.js' %}"></script>
+<script src="{% static 'js/editor/delta_consumer.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/editor.css' %}">
 
 {% endblock %}
