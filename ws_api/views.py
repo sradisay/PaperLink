@@ -10,7 +10,21 @@ from ws_api.scripts.subsearch import sub_search
 from ws_api.scripts.getdoc import doc_exists
 from ws_api.scripts.flatten import DeltaFlattener
 
-base_doc = {"deltas": []}
+base_doc = {"deltas": [
+    {
+        "server_id": "root",
+        "temp_id": "root",
+        "change_type": "add",
+        "text": "_",
+        "pos": {
+            "base_id": None,
+            "index": 0
+        },
+        "meta": {
+
+        }
+    }
+]}
 
 
 @login_required()
