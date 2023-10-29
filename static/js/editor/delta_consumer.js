@@ -16,7 +16,7 @@ function consume(delta)
 
     if (change_type === "add")
     {
-        let id = ("server_id" in delta) ? delta.server_id : delta.temp_id;
+        let id = delta.temp_id
 
         let base_id = delta.pos.base_id;
         let text = delta.text;

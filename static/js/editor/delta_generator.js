@@ -28,9 +28,6 @@ const ws = new WebSocket(`ws://127.0.0.1:8000/ws/edit/${doc_id}/`);
 
 ws.addEventListener('message', (e) => {
     console.log("saved")
-    for (let i = 0; i < e.data.length; i++){
-        $("#"+e.data[i].client_id).attr("id", e.data[i].server_id);
-    }
 });
 setInterval( () => {
     if (awaiting_save) {
@@ -41,6 +38,7 @@ setInterval( () => {
         await_timer = 2;
         awaiting_save = false;
 
+        console.log(delta);
         ws.send(JSON.stringify(delta));
     }
 }, 1000);
@@ -129,6 +127,7 @@ function update(key, pos, is_selection) {
         if (is_selection) {
             batchDelete(pos)
         } else if (key === "Delete") {
+            console.log("del")
             const delta_length = document.getElementById(pos.base_delta).innerText.length;
             if (pos.index !== delta_length) {
                 pushDelta({
@@ -155,6 +154,7 @@ function update(key, pos, is_selection) {
                 })
             }
         } else if (key === "Backspace") {
+            console.log("bspace");
             if (pos.index === 0) {
                 if (document.getElementById(pos.base_delta).previousElementSibling === null ) return;
                 const prevDelta = document.getElementById(pos.base_delta).previousElementSibling;
@@ -192,7 +192,11 @@ function update(key, pos, is_selection) {
             index = pos.index;
         }
         // check if we can add a new delta without splitting any
+        console.log(base_id)
         const baseDelta = document.getElementById(base_id);
+        if(baseDelta == null){
+            return  // DO NOT PROCESS CHANGES FOR NULL IDS -- mitigation for bug
+        }
         if (index === baseDelta.innerText.length || index === 0){
             pushDelta({
                 "temp_id": generateUID(),

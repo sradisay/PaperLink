@@ -67,6 +67,7 @@ function load_documents(){
     }).then((response) => {
         return response.json();
     }).then((data) => {
+        console.log(data.deltas);
         for(let i = 0; i < data.deltas.length; i++){
 
             consume(data.deltas[i]);
