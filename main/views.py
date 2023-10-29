@@ -18,6 +18,7 @@ def register(request):
             form.save()
             return redirect('/dashboard')
         else:
+
             return render(request, 'registration/register.html', context={'form': form})
 
 

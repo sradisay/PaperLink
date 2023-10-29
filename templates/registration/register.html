@@ -40,29 +40,30 @@
     <div class="login-box">
         <h2>Registration</h2>
 
-        <form action="" method="POST" id="Register-form">
+        <form method="POST" id="Register-form">
             {% csrf_token %}
             <div class="user-box">
-                <input type="text" required>
+
+                <input id="username" required name="username" class="" type="text" >
                 <label for="username">Username</label>
             </div>
 
             <div class="user-box">
-                <input type="email" required>
+                <input id="email"  name="email"  type="text" p required>
                 <label for="email">Email</label>
             </div>
 
             <div class="user-box">
-                <input type="password" required>
-                <label for="password">Password</label>
+                <input id="password1" required name="password1" type="password" >
+                <label for="password1">Password</label>
             </div>
 
             <div class="user-box">
-                <input type="password" required>
-                <label for="confirm-password">Confirm Password</label>
+                <input  id="password2" name="password2" type="password"  required>
+                <label for="password2">Confirm Password</label>
             </div>
 
-            <button type="submit">submit</button>
+            <button type="submit" class="btn btn-success">submit</button>
         </form>
     </div>
 
