@@ -72,13 +72,16 @@ class DeltaFlattener:
     def delete(self, delta):
         if len(delta["pos"]["base_ids"]) == 1:  # single ID - remove substring
             delt_id = delta["pos"]["base_ids"][0]
-            del_from = delta["pos"]["st_index"]
-            del_to = delta["pos"]["ed_index"]
-            if len(self.pre_flattened[delt_id]["text"]) == (del_to - del_from) + 1:  # delete entire block
-                self.pre_flattened.pop(delt_id)
-            else:  # delete region of block
+
+            try:
+                del_from = delta["pos"]["st_index"]
+                del_to = delta["pos"]["ed_index"]
+
                 self.pre_flattened[delt_id] = self.pre_flattened[delt_id]["text"][0:del_from] \
                                               + self.pre_flattened[delt_id]["text"][del_to:]
+            except KeyError:
+                print("KeyErr /// Missing st_index or ed_index in delta")
+                self.pre_flattened.pop(delt_id)
 
     def meta_change(self, delta):  # overwrite meta for specified items
         for delt_id in delta["pos"]["base_ids"]:

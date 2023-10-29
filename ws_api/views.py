@@ -89,3 +89,6 @@ def get_document(request):
         return JsonResponse({"msg": "unauthorized"}, status=403)
 
     return JsonResponse(doc.document)
+
+@login_required()
+def
