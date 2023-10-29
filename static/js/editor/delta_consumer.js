@@ -133,7 +133,7 @@ function consume_over(delta, editor_id)
                 new_delta.css("text-decoration", "underline");
             }
         }
-
+        if (base_id === "editor") base_id = editor_id;
         if (base_id === editor_id){
              $("#"+editor_id).append(new_delta);
              if (!delta.split) {
@@ -147,6 +147,7 @@ function consume_over(delta, editor_id)
                     setCursor(new_delta.attr('id'), new_delta.text().length);
                 }
             } else {
+                console.log("here");
                 $("#"+editor_id).append(new_delta);
             }
         }
