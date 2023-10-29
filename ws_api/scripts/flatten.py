@@ -59,12 +59,27 @@ class DeltaFlattener:
             return
 
         insertion_delta = self.pre_flattened[delta["pos"]["base_id"]]
-        if insertion_delta["meta"] == delta["meta"]:  # yay!
+        if insertion_delta["meta"] == delta["meta"]:  # yay! same formatting.
             old_pre_index = insertion_delta["text"][:delta["pos"]["index"]]
             insertion = delta["text"]
             old_post_index = insertion_delta["text"][delta["pos"]["index"]:]
             insertion_delta["text"] = old_pre_index + insertion + old_post_index
             return  # modification to existing delta with same formatting - completed.
+        elif (len(insertion_delta["text"]) == delta["pos"]["index"]+1) or (delta["pos"]["index"] == 0):
+            """
+            This really sucks, but, without implementing our own datastructure there is no way to insert into a dict
+            with defined order in O(1) time. In the future, this will be re-implemented in 
+            C++ using a hashmap and doubly linked list.
+            """
+            new_dict = OrderedDict()
+            for item in self.pre_flattened.items():
+                if item[0]["server_id"] == insertion_delta["server_id"]:
+                    if len(insertion_delta["text"]) == delta["pos"]["index"]+1:  # append
+                        new_dict[item[0]] = item[1]
+                        new_dict[delta["server_id"]] = minify(delta)
+                    else:  # otherwise prepend
+                        new_dict[delta["server_id"]] = minify(delta)
+                        new_dict[item[0]] = item[1]
         else:
             raise Exception("Critical Error: Insertion w/ dissimilar formatting")
             # insertions with conflicting formats are disallowed due to handling complexity

@@ -8,6 +8,7 @@ from django.http import HttpResponseBadRequest, JsonResponse
 from editor.models import SubDocument, RootDocument
 from ws_api.scripts.subsearch import sub_search
 from ws_api.scripts.getdoc import doc_exists
+from ws_api.scripts.flatten import DeltaFlattener
 
 base_doc = {"deltas": []}
 
@@ -90,5 +91,25 @@ def get_document(request):
 
     return JsonResponse(doc.document)
 
+
 @login_required()
-def
+def flatten_document(request):
+    doc_pk = request.GET.get("doc_id")
+    root_doc = RootDocument.objects.filter(pk=doc_pk).first()
+    sub_doc = SubDocument.objects.filter(pk=doc_pk).first()
+    if root_doc:
+        doc = root_doc
+        doc_obj = RootDocument
+    elif sub_doc:
+        doc = sub_doc
+        doc_obj = RootDocument
+    else:
+        return JsonResponse({"msg": "invalid doc"}, status=400)
+
+    flattener = DeltaFlattener(doc.document["deltas"])
+    flattener.process()
+
+    doc.document["deltas"] = flattener.flattened
+    doc.save()
+
+    return JsonResponse({"msg": "success"})
