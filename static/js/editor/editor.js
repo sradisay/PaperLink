@@ -1,66 +1,6 @@
 // Scripts for editor frontend
 
-class DeltaNode{
-    constructor(delta) {
-        this.delta = delta;
-        this.next = null;
-        this.prev = null;
-    }
-}
-
-
-class DeltaList{
-    constructor() {
-        this.head = null;
-        this.tail = null;
-        this.size = 0;
-        this.map = {};
-    }
-    add(delta_node){
-        if (this.size === 0){
-            this.head = delta_node;
-            this.tail = delta_node;
-        } else {
-            this.tail.next = delta_node;
-            delta_node.prev = this.tail;
-            this.tail = delta_node;
-        }
-        this.size++;
-    }
-    insert_beginning(delta_node){
-        if (this.size === 0){
-            this.head = delta_node;
-            this.tail = delta_node;
-        } else {
-            this.head.prev = delta_node;
-            delta_node.next = this.head;
-            this.head = delta_node;
-        }
-        this.size++;
-    }
-    insert(insert_after_id, delta_node){
-        let left = this.map[insert_after_id];
-        let right = left.next;
-        left.next = delta_node;
-        right.prev = delta_node;
-        delta_node.prev = left;
-        delta_node.next = right;
-        this.size++;
-    }
-    delete(id){
-        let delete_node = this.map[id];
-        delete_node.prev.next = delete_node.next;
-        delete_node.next.prev = delete_node.prev;
-        delete this.map[id];
-    }
-}
-
-let delta_list = DeltaList();
-
 const editor = document.getElementById("editor");
-
-
-
 
 // start with editor focused
 let editor_focused = true;
