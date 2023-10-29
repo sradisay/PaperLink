@@ -1,4 +1,28 @@
+<style>
+#editor-container2 {
+    width: 70%;
 
+    margin:auto;
+}
+
+
+#editor2{
+        width: 100%;
+        z-index: -3;
+
+        margin: 0 auto 5px;
+
+        display: flex;
+        flex-wrap: wrap;
+        text-wrap: normal;
+        white-space: normal;
+        font-size: 0;
+        line-height: 1.2;
+
+        height: auto;
+
+    }
+</style>
 <div style="height:100%;width:100%;" class="p-3">
     <label for="slider">Versions</label>
     <input type="range" id="slider" name="slider" min="0" max="100" value="0" style="width:100%;">
@@ -6,8 +30,8 @@
     <p>Selected Version: <span id="sliderValue">50</span></p>
 
     <div id="version-viewer">
-        <div id="editor-container">
-            <div id="editor" >
+        <div id="editor-container2">
+            <div id="editor2" >
 
             </div>
         </div>
@@ -22,6 +46,12 @@
     // Update the selected value when the slider is changed
     slider.addEventListener("input", function() {
         sliderValue.textContent = slider.value;
+        $("#editor2").empty();
+        let sub_deltas = deltas.slice(0, slider.value);
+        for (let i = 0; i < sub_deltas.length; i++) {
+            let delta = sub_deltas[i];
+            consume_over(delta, "editor2");
+        }
     });
 
     function load_documents(id){
@@ -34,11 +64,11 @@
         }).then((data) => {
             for(let i = 0; i < data.deltas.length; i++) {
                 deltas.push(data.deltas[i]);
-                consume(data.deltas[i]);
+
             }
+            slider.max = deltas.length - 1;
         });
-        console.log(deltas.length)
-        slider.max = deltas.length - 1;
+
 
     }
 
