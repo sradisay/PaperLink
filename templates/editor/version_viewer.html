@@ -5,7 +5,7 @@
 {% block content %}
     <link rel="stylesheet" href="{% static "css/editor/document_viewer.css" %}"/>
     <script src="{% static "js/editor/document_viewer.js" %}"></script>
-
+    <script src="{% static "js/editor/delta_consumer.js" %}"></script>
     <div id="document-viewer" style="overflow: hidden;">
         <nav class="position-fixed p-1" id="toolbar">
             <div class="d-flex justify-content-between"> <!-- Center the entire container -->
@@ -89,10 +89,11 @@
             </div>
         </nav>
         <div style="padding-top:150px; " class="row">
-            <div class="col-6 p-0 m-0" id="viewer" style="border-right:white solid 1px;">
-                {% include "editor/editor.html" %}
-            </div>
-            <div class="col-6 p-0 m-0" id="versions" style="height:auto;">
+            <!--<div class="col-6 p-0 m-0" id="viewer" style="border-right:white solid 1px;">
+
+            </div>-->
+
+            <div class="col-12 p-0 m-0" id="versions" style="height:auto;">
                 {% include "editor/versions.html" %}
             </div>
         </div>
