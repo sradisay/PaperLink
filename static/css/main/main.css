@@ -9,7 +9,7 @@ section{
   display: grid;
   place-items: center;
   align-content: center;
-  min-height: 100vh;
+  min-height: 85vh;
   scroll-snap-align: start;
 }
 
@@ -22,7 +22,10 @@ html{
   position: absolute;
   left: 215px;
   top: 300px;
-  width: 100%;
+  width: 300px;
+  white-space: nowrap;
+  text-wrap: none;
+  overflow:visible;
 }
 
 #squiggle{

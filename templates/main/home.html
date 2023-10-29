@@ -12,7 +12,7 @@
 <nav class="position-absolute navbar navbar-expand-sm navbar-dark">
   <div class="container-fluid scroller">
       {#Header for the nav bar#}
-    <a class="navbar-brand" href="{% url 'home' %}" id="coloredbrand">Paperlink</a>
+      <a class="navbar-brand" href="{% url 'home' %}" id="coloredbrand">Paperlink</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -50,8 +50,12 @@
     </div>
   </div>
 </nav>
-        {#<img id="squiggle" src="{% static "css/main/images/greenSquiggleNew.png" %}" class="img-fluid" alt="Responsive image">#}
-
+    <img id="squiggle" src="{% static "css/main/images/greenSquiggleNew.png" %}" class="img-fluid" alt="Responsive image">
+    <style>
+    .bg-img{
+        background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSWo28zgI8OawvSTb_relK2fnUnWOcadpC20L6BAx-zhScQDK43")
+    }
+</style>
 <article>
         {#this is the body header#}
     <section>
@@ -66,7 +70,7 @@
     </header>
     </section>
 
-     {#<img id="squiggle" src="{% static "css/main/images/greenSquiggleNew90D.png" %}" class="img-fluid" alt="Responsive image">#}
+     <img id="squiggle" src="{% static "css/main/images/greenSquiggleNew90D.png" %}" class="img-fluid" alt="Responsive image">
 
 
     {#THE FOLLOWING HAS ALL PLACE HOLDER IMAGES and text OF STARS#}
