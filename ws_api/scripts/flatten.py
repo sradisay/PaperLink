@@ -69,7 +69,9 @@ class DeltaFlattener:
             """
             This really sucks, but, without implementing our own datastructure there is no way to insert into a dict
             with defined order in O(1) time. In the future, this will be re-implemented in 
-            C++ using a hashmap and doubly linked list.
+            C++ using a hashmap and doubly linked list
+            
+            hashmap[id] -> node in doubly linked list containing a struct of data
             """
             new_dict = OrderedDict()
             for item in self.pre_flattened.items():
