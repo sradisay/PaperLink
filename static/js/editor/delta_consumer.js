@@ -138,6 +138,7 @@ function consume_over(delta, editor_id)
         }
 
         if (base_id === editor_id){
+            console.log(editor_id);
              $("#"+editor_id).append(new_delta);
              if (!delta.split) {
                 setCursor(new_delta.attr('id'), new_delta.text().length);
@@ -150,6 +151,7 @@ function consume_over(delta, editor_id)
                     setCursor(new_delta.attr('id'), new_delta.text().length);
                 }
             } else {
+                console.log("here");
                 console.log(editor_id);
                 $("#"+editor_id).append(new_delta);
             }
