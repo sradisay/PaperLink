@@ -108,3 +108,22 @@ function printMe() {
 }
 
 
+function load_documents(){
+    let doc_id = $("#doc-id").val();
+    fetch(`/api/get_document?doc_id=${doc_id}`, {
+        method: 'GET',
+    }).then((response) => {
+        return response.json();
+    }).then((data) => {
+        console.log(data);
+        for(let i = 0; i < data.deltas.length; i++){
+            console.log(data.deltas[i]);
+            consume(data.deltas[i]);
+        }
+    });
+}
+
+
+
+
+load_documents();

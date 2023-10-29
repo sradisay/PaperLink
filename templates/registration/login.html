@@ -41,7 +41,8 @@
 <body>
 <div class="login-box">
     <h2>Login</h2>
-    <form action="submit">
+    <form action="" method="POST">
+        {% csrf_token %}
         <div class="user-box">
             <input type="text" required>
             <label for="">Username</label>
@@ -52,13 +53,13 @@
             <label for="">Password</label>
         </div>
 
-        <a href="#">
+        <button type="submit">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             Submit
-        </a>
+        </button>
     </form>
 </div>
 </body>
