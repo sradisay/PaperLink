@@ -4,10 +4,17 @@
 
 #document-viewer{
     background-color: rgb(40,40,40);
-    color:white;
+    color:white!important;
     height: 100vh;
 }
+#viewer{
+    padding-top:170px;
+    background-color: rgb(40,40,40);
 
+}
+.body{
+    background-color: rgb(40,40,40);
+}
 #toolbar{
     height:auto;
     width: 100%;
@@ -42,6 +49,7 @@
 .big-icon{
     font-size: 35px;
     margin: 10px;
+     color:white!important;
 }
 
 .top-nav-item{

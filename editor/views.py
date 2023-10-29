@@ -8,10 +8,10 @@ from .models import RootDocument
 
 def document_viewer(request, document_id):
 
-    if request.user.is_authenticated :
+    if request.user.is_authenticated:
 
         document = get_object_or_404(RootDocument, id=document_id)
         if request.user == document.branch_owner:
-            return render(request, "editor/editor.html", {"document": document})
+            return render(request, "editor/document_viewer.html", {"document": document})
 
     return redirect("dashboard")

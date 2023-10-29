@@ -1,20 +1,16 @@
-// Scripts for editor frontend
 
-const editor = document.getElementById("editor");
 
-// start with editor focused
-let editor_focused = true;
-editor.addEventListener('focus', () => { editor_focused = true });
-editor.addEventListener('blur', () => { editor_focused = false });
 
 
 document.addEventListener("keydown", (event) => {
-    if (editor_focused) {
+    if (true) {
         if (!(event.key.startsWith("Arrow") || event.ctrlKey || event.altKey )) {
             event.preventDefault(); // disallow changing the html element
         }
         // Get the key from the event object
         const key = event.key
+
+
 
         // Check for toolbar actions
         // TODO: handle more toolbar shortcut actions
@@ -63,61 +59,22 @@ document.addEventListener('paste', (event) => {
 
 
 
-function changeColor() {
-    const color = prompt("Enter your color in hex ex:#f1f233");
-    document.execCommand("foreColor", false, color);
-}
 
 
-function getImage() {
-    const file = document.querySelector("input[type=file]").files[0];
 
-    const reader = new FileReader();
-
-    let dataURI;
-
-  reader.addEventListener(
-    "load",
-    function() {
-      dataURI = reader.result;
-
-      const img = document.createElement("img");
-      img.src = dataURI;
-      editorContent.appendChild(img);
-    },
-    false
-  );
-
-  if (file) {
-    console.log("s");
-    reader.readAsDataURL(file);
-  }
-}
-
-function printMe() {
-  if (confirm("Check your Content before print")) {
-    const body = document.body;
-    let s = body.innerHTML;
-    body.textContent = editorContent.innerHTML;
-
-    document.execCommandShowHelp;
-    body.style.whiteSpace = "pre";
-    window.print();
-    location.reload();
-  }
-}
 
 
 function load_documents(){
+
+
     let doc_id = $("#doc-id").val();
     fetch(`/api/get_document?doc_id=${doc_id}`, {
         method: 'GET',
     }).then((response) => {
         return response.json();
     }).then((data) => {
-        console.log(data);
         for(let i = 0; i < data.deltas.length; i++){
-            console.log(data.deltas[i]);
+
             consume(data.deltas[i]);
         }
     });

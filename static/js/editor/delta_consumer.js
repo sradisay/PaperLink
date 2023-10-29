@@ -38,7 +38,7 @@ function consume(delta)
         }
 
         if (base_id === "editor"){
-             $("#editor").prepend(new_delta);
+             $("#editor").append(new_delta);
              if (!delta.split) {
                 setCursor(new_delta.attr('id'), new_delta.text().length);
             }
@@ -50,7 +50,7 @@ function consume(delta)
                     setCursor(new_delta.attr('id'), new_delta.text().length);
                 }
             } else {
-                $("#editor").prepend(new_delta);
+                $("#editor").append(new_delta);
             }
         }
 
@@ -72,7 +72,9 @@ function consume(delta)
                 if (delta.text().length === 0){
                     if (document.getElementById("editor").childElementCount !== 1){
                         if (delta.prev().attr('id') !== undefined) {
-                            setCursor(delta.prev().attr('id'), delta.prev().text().length);
+                            if (delta.prev().text().length !== 0) {
+                                setCursor(delta.prev().attr('id'), delta.prev().text().length);
+                            }
                         } else {
                             if (delta.next().text().length !== 0) {
                                 setCursor(delta.next().attr('id'), 0);

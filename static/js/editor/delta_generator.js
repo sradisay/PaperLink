@@ -18,8 +18,7 @@ function generateUID(){
 
 function pushDelta(delta_){
     await_timer = 2;
-    // perform change to the local document
-    console.log(delta_);
+
     consume(delta_);
     // analyze pending deltas to see if we can edit them before making a new delta
     delta.deltas.push(delta_);
@@ -28,7 +27,10 @@ let doc_id = $("#doc-id").val();
 const ws = new WebSocket(`ws://127.0.0.1:8000/ws/edit/${doc_id}/`);
 
 ws.addEventListener('message', (e) => {
-    console.log(e);
+    console.log("saved")
+    for (let i = 0; i < e.data.length; i++){
+        $("#"+e.data[i].client_id).attr("id", e.data[i].server_id);
+    }
 });
 setInterval( () => {
     if (awaiting_save) {
@@ -92,9 +94,22 @@ function batchDelete(pos){
 
 function update(key, pos, is_selection) {
     // edge case of blank document
-    if (pos.base_delta === "editor"){
-        pos.base_delta = document.getElementById("editor").firstElementChild.id;
+    if (pos.base_delta === "editor" || pos.base_delta === "" || pos.base_delta === undefined || pos.base_delta === null) {
+        let new_delta = document.getElementById("editor").firstElementChild;
+        if (new_delta === null || new_delta === undefined) {
+            let new_delta = $(`<span style="font-family: 'Times New Roman',sans-serif; font-size:12px;" id="root"></span>`);
+            $("#editor").append(new_delta);
+            pos.base_delta = new_delta.attr('id');
+        }
+        else
+        {
+            pos.base_delta = new_delta.id;
+        }
+
     }
+
+
+
 
     let special_key = false;
 
@@ -107,7 +122,7 @@ function update(key, pos, is_selection) {
         special_key = true;
     }
 
-    console.log("POS: ", pos);
+
     if (!awaiting_save) awaiting_save = true;
     // handle deletions
     if (key === "Delete" || key === "Backspace") {

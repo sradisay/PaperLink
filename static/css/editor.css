@@ -1,68 +1,32 @@
-html, body{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-
-.toolbar{
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(20px,40px));
-    background-color: rgb(231, 231, 231);
-    color: rgb(0, 0, 0);
-    grid-gap: 1rem;
-    padding: 1rem;
-    justify-content: center;
-    align-items:center;
-}
-
-.tool-items{
-    background-color: rgb(27, 26, 26);
-     padding-top: .6rem;
-     padding-bottom:.6rem;
-    cursor: pointer;
-    color: #ffff;
-}
-
-
-
 
 .editor_container {
-    border: 1px solid black; /* Border around the paper */
-    height:100vh;
-    aspect-ratio: 1/1.294;
-    margin:auto;
+    width: 800px;
 
-    flex-wrap: wrap;
-    transform: scale(1.5);
-    transform-origin: top center;
+    margin:auto;
 }
 
 
 #editor{
-    width: 80vh; /* Width of 8.5 inches */
+    width: 100%;
+    z-index: -3;
 
     margin: 0 auto 5px;
 
-    padding: 0.5in; /* DOCUMENT MARGINS ARE ADJUSTABLE HERE */
-    box-sizing: border-box;
-    display: inline-flex;
+
+    padding: 0.5in;
+    scale: 1.5;
+
+
     font-size: 0;
     line-height: 1.2;
-    flex-wrap:wrap;
-    height: 12px;
-    box-shadow: none;
-}
-#editor:hover{
-    border:none;
-    box-shadow: none;
+
+    height: auto
+
 }
 #editor:focus{
-    border:none;
-    box-shadow: none;
+    outline: none;
 }
-#editor:active{
-    border:none;
-    box-shadow: none;
-}
+
 
 .delta{
     display: inline-block;
