@@ -9,8 +9,9 @@ def editor(request):
 
 
 def document_viewer(request, document_id):
+
     if request.user.is_authenticated:
         document = get_object_or_404(RootDocument, id=document_id)
-        return render(request, "editor/editor.html", {"json_document": document.document})
+        return render(request, "editor/document_viewer.html", {"document": document})
 
-    return render(request, "editor/editor.html")
+    return render(request, "editor/document_viewer.html")
