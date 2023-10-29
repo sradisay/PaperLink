@@ -25,8 +25,11 @@ function pushDelta(delta_){
     delta.deltas.push(delta_);
 }
 let doc_id = $("#doc-id").val();
-const socket = new WebSocket(`ws://127.0.0.1:8000/ws/edit/${doc_id}/`);
+const ws = new WebSocket(`ws://127.0.0.1:8000/ws/edit/${doc_id}/`);
 
+ws.addEventListener('message', (e) => {
+    console.log(e);
+});
 setInterval( () => {
     if (awaiting_save) {
         await_timer = await_timer - 1;
@@ -36,7 +39,7 @@ setInterval( () => {
         await_timer = 2;
         awaiting_save = false;
 
-        socket.send(JSON.stringify(delta));
+        ws.send(JSON.stringify(delta));
     }
 }, 1000);
 
