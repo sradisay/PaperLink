@@ -36,7 +36,8 @@ class EditConsumer(AsyncWebsocketConsumer):
         else:
             self.root_document = await sync_to_async(RootDocument.objects.get)(pk=self.document.root_document_id)
 
-        if (self.root_document.branch_owner.id != self.user.id) and not \
+        print(self.root_document.branch_owner_id)
+        if (self.root_document.branch_owner_id != self.user.id) and not \
                 (await sync_to_async(self.root_document.shared_users.get)(pk=self.user.id)):
             await self.close()  # if requestor is not owner or shared user
             return
