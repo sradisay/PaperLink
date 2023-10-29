@@ -97,7 +97,7 @@ class DeltaFlattener:
                 self.pre_flattened[delt_id] = self.pre_flattened[delt_id]["text"][0:del_from] \
                                               + self.pre_flattened[delt_id]["text"][del_to:]
             except KeyError:
-                print("KeyErr /// Missing st_index or ed_index in delta")
+                print("KeyErr /// Missing st_index or ed_index in delta /// removing whole delta")
                 self.pre_flattened.pop(delt_id)
 
     def meta_change(self, delta):  # overwrite meta for specified items
